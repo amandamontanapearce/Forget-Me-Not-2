@@ -5,10 +5,28 @@
       <div class="card card-body bg-light">
         <div class="card-title">Add a task...</div>
         <div class="card-body">
-          <div class="form-group">
-            <label for="title" class="form-group-label">Task</label>
-            <input type="text" name="title" v-model="task.title">
-          </div>
+          <form>
+            <div class="input-group input-group-lg">
+              <input type="text" name="title" v-model="task.title" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Add</button>
+                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Add Due Date</a>
+                  <a class="dropdown-item" href="#">Add Tags</a>
+                  <a class="dropdown-item" href="#" :click="showDescriptionField = true">Add Description</a>
+                  <div role="separator" class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Add Priority Level</a>
+                  </div>
+              </span>
+            </div>
+            <div v-if="showDescriptionField" class="form-group">
+              <label for="description">Task Description</label>
+              <textarea class="form-control" v-model="task.description" rows="3">
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -20,8 +38,10 @@ export default {
   props: [],
   data() {
     return {
+      showDescriptionField: false;
       task: {
         title: '',
+        description: '',
       },
     }
   },
