@@ -1,3 +1,4 @@
+const flatpickr = require("flatpickr");
 
 window._ = require('lodash');
 

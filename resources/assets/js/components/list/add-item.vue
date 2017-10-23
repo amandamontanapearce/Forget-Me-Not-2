@@ -24,7 +24,11 @@
             </div>
             <div v-if="showDescriptionField" class="form-group">
               <label for="description">Task Description</label>
-              <textarea class="form-control" v-model="task.description" rows="3">
+              <textarea class="form-control" v-model="task.description" rows="3" ></textarea>
+            </div>
+            <div v-if="showDueDate" class="form-group">
+              <label for="dueDate">Task Due Date</label>
+              <input id="dueDate" class="form-control" v-model="task.dueDate">
             </div>
           </form>
         </div>
@@ -34,18 +38,24 @@
 </div>
 </template>
 <script>
+import flatpickr from "flatpickr";
+
 export default {
   props: [],
   data() {
     return {
       showDescriptionField: false;
+      showDueDate: false;
       task: {
         title: '',
         description: '',
+        dueDate: '',
       },
     }
   },
-
+  created: {
+  flatpickr("#dueDate", {});
+  },
 
 }
 <script>
