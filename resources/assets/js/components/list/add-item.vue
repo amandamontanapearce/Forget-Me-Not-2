@@ -30,6 +30,16 @@
               <label for="dueDate">Task Due Date</label>
               <input id="dueDate" class="form-control" v-model="task.dueDate">
             </div>
+
+            <div class="form-group">
+              <div v-if="task.tags.length > 0" >
+                <span v-for="tag in task.tags">{{tag}}</span>
+              </div>
+              <div class="input-group">
+                <input type="text" class="form-control" aria-label="tags" aria-describedby="tags-addon">
+                <span class="input-group-addon" id="tags-addon" :click="addTag">Add Tag</span>
+              </div>
+            </div>
           </form>
         </div>
       </div>
@@ -50,12 +60,22 @@ export default {
         title: '',
         description: '',
         dueDate: '',
+        tags: [],
       },
     }
   },
   created: {
-  flatpickr("#dueDate", {});
+    flatpickr("#dueDate", {
+      altInput: true,
+      });
   },
-
+  methods: {
+    addTag(event) {
+      if (event.target.value) {
+        this.task.tags.push(event.target.value);
+        event.target.value = "";
+      }
+    },
+  },
 }
 <script>
