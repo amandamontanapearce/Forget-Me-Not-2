@@ -7,6 +7,7 @@
         <div class="card-body">
           <form>
             <div class="input-group input-group-lg">
+            {{task.title}}
               <input type="text" name="title" v-model="task.title" class="form-control">
               <span class="input-group-btn">
                 <button class="btn btn-secondary" type="button">Add</button>
@@ -50,24 +51,26 @@
 <script>
 import flatpickr from "flatpickr";
 
-export default {
-  props: [],
+ export default {
+
   data() {
     return {
-      showDescriptionField: false;
-      showDueDate: false;
+      showDescriptionField: false,
+      showDueDate: false,
       task: {
-        title: '',
+        title: 'hi',
         description: '',
         dueDate: '',
         tags: [],
       },
-    }
+    };
   },
-  created: {
+  created() {
     flatpickr("#dueDate", {
       altInput: true,
       });
+      console.log('created' + this.task.title);
+
   },
   methods: {
     addTag(event) {
@@ -78,4 +81,4 @@ export default {
     },
   },
 }
-<script>
+</script>
